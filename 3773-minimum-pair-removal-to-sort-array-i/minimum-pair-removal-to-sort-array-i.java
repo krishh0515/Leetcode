@@ -1,12 +1,11 @@
 import java.util.*;
 
 class Solution {
+
     public int minimumPairRemoval(int[] nums) {
-        
+
         List<Integer> list = new ArrayList<>();
-        for (int num : nums) {
-            list.add(num);
-        }
+        for (int num : nums) list.add(num);
 
         int operations = 0;
 
@@ -25,6 +24,7 @@ class Solution {
             }
 
             int merged = list.get(index) + list.get(index + 1);
+
             list.remove(index);
             list.remove(index);
             list.add(index, merged);
@@ -37,9 +37,7 @@ class Solution {
 
     private boolean isSorted(List<Integer> list) {
         for (int i = 1; i < list.size(); i++) {
-            if (list.get(i) < list.get(i - 1)) {
-                return false;
-            }
+            if (list.get(i) < list.get(i - 1)) return false;
         }
         return true;
     }
