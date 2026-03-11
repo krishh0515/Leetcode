@@ -1,9 +1,8 @@
-import java.util.*;
-
 class Solution {
     public int subarraySum(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);  // base case
+        
+        map.put(0, 1);
         
         int prefixSum = 0;
         int count = 0;
