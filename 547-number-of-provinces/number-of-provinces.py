@@ -1,22 +1,24 @@
 class Solution:
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+    def findCircleNum(self, isConnected):
+
         n = len(isConnected)
-        parent = list(range(n))
+        visited = [False] * n
 
-        def find(x):
-            while parent[x] != x:
-                parent[x] = parent[parent[x]]
-                x = parent[x]
-            return x
+        def dfs(city):
 
-        def union(a, b):
-            a, b = find(a), find(b)
-            if a != b:
-                parent[a] = b
+            visited[city] = True
 
-        for i in range(n):
-            for j in range(i + 1, n):
-                if isConnected[i][j]:
-                    union(i, j)
+            for neighbor in range(n):
 
-        return sum(find(i) == i for i in range(n))  # count distinct roots
+                if isConnected[city][neighbor] == 1 and not visited[neighbor]:
+                    dfs(neighbor)
+
+        provinces = 0
+
+        for city in range(n):
+
+            if not visited[city]:
+                provinces += 1
+                dfs(city)
+
+        return provinces
